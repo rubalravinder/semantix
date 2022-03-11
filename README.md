@@ -8,4 +8,9 @@
 <br>
 
 ## Environnement virtuel
-- python = 3.9
+- python = 3.9.10
+- pymagnitude (tuto)
+
+
+### Tuto déploiement d'un modèle
+https://www.alibabacloud.com/blog/how-to-create-and-deploy-a-pre-trained-word2vec-deep-learning-rest-api_594064
