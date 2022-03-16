@@ -41,19 +41,16 @@ def similarity_route():
 @app.route("/test_similarity", methods=["GET", "POST"])
 def similarity_score():
     form = SimilarityForm()
-    # here, if the request type is a POST we get the data from
-    # forms and save them else we return the forms html page
+
     if request.method == "POST":
         word2 = request.form["text"]
         word1 = 'chien'
-        # url = "http://summarizer:5000/model/predict"
-        # data = {"text": [userTxt]}
 
         result = model.similarity(word1, word2)
-        return render_template('./similarity.html', resultat = result)
+        # return render_template('./similarity.html', resultat = result)
 
-        # output = json.loads(res.text)
-        # return f"""<h2>Your text</h2> <p> {userTxt} </p> <h2>Your text summarized </h2> <p>{output['summary_text'][0]}</p>"""
+        return f"""<h2>Your Word</h2> <p> {word2} </p> <h2>Your similarity score with {word1}: </h2> <p>{result}</p>"""
+    
     else:
         return render_template("/test_similarity.html", form=form)
 
