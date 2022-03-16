@@ -1,7 +1,9 @@
 import pandas as pd
 import random
-from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, TextAreaField, SubmitField
+# #from flask_wtf import FlaskForm
+# from wtforms import StringField, TextAreaField, SubmitField
 
 def load_vocab_fr():
     '''This function loads our french dictionnary and transforms it as a list'''
@@ -16,18 +18,9 @@ def pick_random_word(mots_fr):
     return word_to_guess
 
 
-class SimilarityForm(FlaskForm):
-    text = TextAreaField("")
-    submit = SubmitField("Send")
-from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+# class SimilarityForm(FlaskForm):
+#     text = TextAreaField("")
+#     submit = SubmitField("Send")
 
-class SimilarityForm(FlaskForm):
-    text = TextAreaField("")
-    submit = SubmitField("Send")
-from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
 
-class SimilarityForm(FlaskForm):
-    text = TextAreaField("")
-    submit = SubmitField("Send")
+
