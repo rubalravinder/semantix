@@ -82,5 +82,21 @@ def similarity_score():
     else:
         return render_template("/test_similarity.html", form=form)
 
+@app.route("/test_similarity", methods=["GET", "POST"])
+def similarity_score():
+    form = SimilarityForm()
+
+    if request.method == "POST":
+        word2 = request.form["text"]
+        word1 = 'chien'
+
+        result = model.similarity(word1, word2)
+        # return render_template('./similarity.html', resultat = result)
+
+        return f"""<h2>Your Word</h2> <p> {word2} </p> <h2>Your similarity score with {word1}: </h2> <p>{result}</p>"""
+    
+    else:
+        return render_template("/test_similarity.html", form=form)
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
