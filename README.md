@@ -13,6 +13,8 @@
 - python = 3.9.10
 - pymagnitude (si tuto)
 - gensim
+- Flask-WTF
+- WTForms
 
 
 ### Tuto déploiement d'un modèle
