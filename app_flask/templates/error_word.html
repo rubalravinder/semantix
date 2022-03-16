@@ -1,10 +1,13 @@
-<!doctype html>
-<html>
-    <head>
-        <h1>OUPS, ce mot n'existe pas. Attention aux accents et l'orthographe</h1>
+{% extends "layout.html" %}
+{% block content %}
 
-        <form>
-            <input type="button" value="Reessayer" onclick="history.back()">
-           </form>
-    </body>
-    </head>
+<head>
+    <h1>OUPS, ce mot n'existe pas. Attention aux accents et l'orthographe</h1>
+
+    <form>
+        <input type="button" value="Reessayer" onclick="history.back()">
+        </form>
+</body>
+</head>
+
+{% endblock %}
