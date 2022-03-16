@@ -1,0 +1,19 @@
+/*******************************************************************
+                                GLOBAL
+*******************************************************************/
+
+body {
+    text-align: center;
+    background-color: darkslategray;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+p {
+    text-align: center;
+}

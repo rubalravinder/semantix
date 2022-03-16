@@ -2,10 +2,19 @@ from numpy import NaN
 from flask import Flask, request, render_template
 from gensim.models import KeyedVectors
 import warnings
+from forms import SimilarityForm
+import os
+
+
 warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim') # not sure it's useful there
 
 
 app = Flask(__name__)
+
+ # generate a secret key for the similarity form (html page test_similarity)
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
+
 
 # Let's load the Word Embeddings model trained with the .bin composed of tons of french words.
 # Can't really explain how it's working for the moment. 
@@ -28,6 +37,25 @@ def similarity_route():
     word2 = request.values.get("mot")  # We get the users's word
     result = model.similarity(word1, word2) # The function which calculate similarities    
     return render_template('./similarity.html', resultat = result)
+
+@app.route("/test_similarity", methods=["GET", "POST"])
+def similarity_score():
+    form = SimilarityForm()
+    # here, if the request type is a POST we get the data from
+    # forms and save them else we return the forms html page
+    if request.method == "POST":
+        word2 = request.form["text"]
+        word1 = 'chien'
+        # url = "http://summarizer:5000/model/predict"
+        # data = {"text": [userTxt]}
+
+        result = model.similarity(word1, word2)
+        return render_template('./similarity.html', resultat = result)
+
+        # output = json.loads(res.text)
+        # return f"""<h2>Your text</h2> <p> {userTxt} </p> <h2>Your text summarized </h2> <p>{output['summary_text'][0]}</p>"""
+    else:
+        return render_template("/test_similarity.html", form=form)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
