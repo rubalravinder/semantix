@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+
+<!-- add the right css file -->
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
+{% endblock %}
+
+
+<html>
+<head></head>
+<body>
+  {% block content %}{% endblock %}
+
+</body>
+</html>
