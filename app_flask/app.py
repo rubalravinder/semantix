@@ -64,10 +64,10 @@ def similarity_score():
             propositions.append(word_proposed)
             table = Historique(propositions)
             id+=1
-        return render_template("/test_similarity.html", form=form, table=table, most = most_similar)
+        return render_template("/home.html", form=form, table=table, most = most_similar)
         
     else:
-        return render_template("/test_similarity.html", form=form, table=table)
+        return render_template("/home.html", form=form, table=table, most = most_similar)
 
 
 

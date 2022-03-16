@@ -27,9 +27,24 @@ class Historique(Table):
     mot = Col('mot')
     score = Col('score')
 
+    def sort_propositions(self, propositions):
+        # sort all scores
+        scores = [prop.get_score() for prop in propositions]
+        scores_sorted = scores.sort()
+
+        # classify propositions
+        ###### A COMPLETER ######
+
+        
+
+
+
 # Get some objects
 class Proposition(object):
     def __init__(self, id, mot, score):
         self.id = id
         self.mot = mot
         self.score = score
+
+    def get_score(self):
+        return self.score
