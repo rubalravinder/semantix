@@ -3,7 +3,6 @@ from flask import Flask, request, render_template
 from gensim.models import KeyedVectors
 import warnings
 from forms import *
-#from forms import SimilarityForm
 import os
 
 
@@ -25,11 +24,15 @@ word_picked = pick_random_word(vocab_fr) # We generate the random french word
 print(word_picked)
 
 
-#####################################################################################################
-############################ The model is heavy ################################################
-######################## This is why the app makes ###################################################
-########################### few seconds to start ########################################################
-######################################################################################################
+##########################################################################################################
+###################################### The model is heavy ################################################
+################################## This is why the app makes #############################################
+##################################### few seconds to start ###############################################
+##########################################################################################################
+
+# Generate global variables
+id = 0
+propositions = []
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -52,22 +55,38 @@ def similarity_route():
             return render_template('./similarity.html', resultat = (result*100), most = (most_similar * 100))
 
 
-
 @app.route("/test_similarity", methods=["GET", "POST"])
 def similarity_score():
     form = SimilarityForm()
 
-    if request.method == "POST":
-        word2 = request.form["text"]
-        word1 = 'chien'
-
-        result = model.similarity(word1, word2)
-        # return render_template('./similarity.html', resultat = result)
-
-        return f"""<h2>Your Word</h2> <p> {word2} </p> <h2>Your similarity score with {word1}: </h2> <p>{result}</p>"""
+    # Initialize variables
+    global propositions
+    global id
+    global word_picked
+    global vocab_fr
     
+    # Populate the table
+    table = Historique(propositions)
+
+    if request.method == "POST":
+
+        word1 = word_picked
+        word2 = request.form["text"]
+        if word2 not in vocab_fr :
+            return render_template('./error_word.html')
+        elif word1 == word2 : 
+            return render_template('./win.html')   
+        else : 
+            result = model.similarity(word1, word2)
+            word_proposed = Proposition(id, word2, result)
+            propositions.append(word_proposed)
+            table = Historique(propositions)
+            id+=1
+        return render_template("/test_similarity.html", form=form, table=table)
+        
     else:
-        return render_template("/test_similarity.html", form=form)
+        return render_template("/test_similarity.html", form=form, table=table)
+
 
 
 

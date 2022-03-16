@@ -15,6 +15,7 @@
 - gensim
 - Flask-WTF
 - WTForms
+- Flask-Table (test pour test_similarity)
 
 
 ### Tuto déploiement d'un modèle
