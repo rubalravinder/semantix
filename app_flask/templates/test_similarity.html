@@ -3,7 +3,8 @@
 
 <div class="contact">
     <h3>Get similarity of your word</h3>
-
+    <h4>Aujourd'hui le mot le plus proche a une similarité de
+        <p>{{most}}</p>  </h4>   
     <!-- Just here i use "url_for" to call the function get_contact.
             This function return the html code of our contact page-->
     <form action="{{ url_for('similarity_score') }}" method=post>

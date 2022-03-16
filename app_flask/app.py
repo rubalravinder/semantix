@@ -22,6 +22,7 @@ model = KeyedVectors.load_word2vec_format("../Data/model_leger.bin", binary=True
 vocab_fr = load_vocab_fr() # We load the french dictionnary 
 word_picked = pick_random_word(vocab_fr) # We generate the random french word
 print(word_picked)
+most_similar = model.most_similar(word_picked)[0][1]
 
 
 ##########################################################################################################
@@ -35,27 +36,7 @@ id = 0
 propositions = []
 
 
-@app.route("/", methods=['GET', 'POST'])
-def welcome():
-    return render_template('./home.html')
-
-@app.route("/similarity", methods=["GET", "POST"])
-def similarity_route():
-    most_similar = model.most_similar(word_picked)[0][1]
-    word1 = word_picked # We'll have to fix word1 as a random french word
-    print(word1)
-    word2 = request.values.get("mot")  # We get the users's word
-    if word2 not in vocab_fr : 
-        return render_template('./error_word.html')
-    else : 
-        result = model.similarity(word1, word2) # The function which calculate similarities 
-        if word1 == word2 : 
-            return render_template('./win.html')   
-        else : 
-            return render_template('./similarity.html', resultat = (result*100), most = (most_similar * 100))
-
-
-@app.route("/test_similarity", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def similarity_score():
     form = SimilarityForm()
 
@@ -64,7 +45,7 @@ def similarity_score():
     global id
     global word_picked
     global vocab_fr
-    
+    global most_similar
     # Populate the table
     table = Historique(propositions)
 
@@ -72,6 +53,7 @@ def similarity_score():
 
         word1 = word_picked
         word2 = request.form["text"]
+        print(word2)
         if word2 not in vocab_fr :
             return render_template('./error_word.html')
         elif word1 == word2 : 
@@ -82,7 +64,7 @@ def similarity_score():
             propositions.append(word_proposed)
             table = Historique(propositions)
             id+=1
-        return render_template("/test_similarity.html", form=form, table=table)
+        return render_template("/test_similarity.html", form=form, table=table, most = most_similar)
         
     else:
         return render_template("/test_similarity.html", form=form, table=table)
