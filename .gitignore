@@ -1,4 +1,4 @@
 # Files and directories to ignore
 test_semantle/
-app_flask/trained_model_french.bin
+Data/
 trained_model_french.bin
