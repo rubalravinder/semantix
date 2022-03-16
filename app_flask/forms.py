@@ -1,7 +1,7 @@
 import pandas as pd
 import random
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, validators
 from flask_table import Table, Col
 
 def load_vocab_fr():
@@ -18,7 +18,7 @@ def pick_random_word(mots_fr):
 
 
 class SimilarityForm(FlaskForm):
-    text = TextAreaField("")
+    text = TextAreaField("", [validators.InputRequired()])
     submit = SubmitField("Send")
 
 # Declare table
