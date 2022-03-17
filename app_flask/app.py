@@ -18,23 +18,22 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 # Let's load the Word Embeddings model trained with the .bin composed of tons of french words.
-# Can't really explain how it's working for the moment. 
+# Can't really explain how it's working for the moment.
+
 model = KeyedVectors.load_word2vec_format("../Data/model_leger.bin", binary=True, unicode_errors="ignore")
-vocab_fr = load_vocab_fr(model) # We load the french dictionnary 
+vocab_fr = load_vocab_fr(model) # We load the french dictionnary
+
+
+# Generate global variables
+
 word_picked = 'table' # We generate the random french word
 print(word_picked)
 most_similar = 0.65
-
-
-##########################################################################################################
-###################################### The model is heavy ################################################
-################################## This is why the app makes #############################################
-##################################### few seconds to start ###############################################
-##########################################################################################################
-
-# Generate global variables
 id = 0
 propositions = []
+
+
+# HTML pages
 
 @app.route("/", methods=["GET", "POST"])
 def bouton():
@@ -62,7 +61,8 @@ def similarity_score():
     global word_picked
     global vocab_fr
     global most_similar
-    # Populate the table
+
+    # Populate table
     table = Historique(propositions)
 
     if request.method == "POST":
@@ -88,6 +88,7 @@ def similarity_score():
 
 
 
+# Execute program
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
