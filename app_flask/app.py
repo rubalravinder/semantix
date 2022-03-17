@@ -31,7 +31,7 @@ print(word_picked)
 list_of_word_picked = [word_picked]
 longueur_mot = 0
 most_similar = 0.65
-id = 0
+id = 1
 propositions = []
 
 
@@ -79,7 +79,9 @@ def similarity_score():
         word2 = request.form["text"]
         if word2 not in vocab_fr :
             return render_template('./error_word.html')
-        elif word1 == word2 : 
+        elif word1 == word2 :
+            propositions.clear()
+            id = 1
             return render_template('./win.html')   
         else : 
             result = round(model.similarity(word1, word2), 3)
