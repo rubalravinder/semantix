@@ -3,17 +3,25 @@ import random
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField, validators
 from flask_table import Table, Col
+import unidecode
 
 def load_vocab_fr():
     '''This function loads our french dictionnary and transforms it as a list'''
     words = pd.read_csv('../Data/liste_francais.txt', encoding = 'latin1', header = None)
     vocab = words.iloc[:,0].values.tolist()
+    for word in vocab : 
+        if word.isalnum() == False or word.isupper() :
+            vocab.remove(word)
+        else : 
+            unidecode.unidecode(word)
     return vocab
 
 
-def pick_random_word(mots_fr):
+def pick_random_word(mots_fr, model_w2vec):
     '''This function picks randomly a word from our french dictionnary'''
     word_to_guess = random.choice(mots_fr)
+    while model_w2vec.most_similar(word_to_guess)[0][1] < 0.6 :
+        word_to_guess = random.choice(mots_fr)
     return word_to_guess
 
 

@@ -21,7 +21,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 # Can't really explain how it's working for the moment. 
 model = KeyedVectors.load_word2vec_format("../Data/model_leger.bin", binary=True, unicode_errors="ignore")
 vocab_fr = load_vocab_fr() # We load the french dictionnary 
-word_picked = pick_random_word(vocab_fr) # We generate the random french word
+word_picked = pick_random_word(vocab_fr, model) # We generate the random french word
 print(word_picked)
 most_similar = round(model.most_similar(word_picked)[0][1], 3)
 
