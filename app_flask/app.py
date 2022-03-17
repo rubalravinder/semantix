@@ -22,7 +22,7 @@ model = KeyedVectors.load_word2vec_format("../Data/model_leger.bin", binary=True
 vocab_fr = load_vocab_fr() # We load the french dictionnary 
 word_picked = pick_random_word(vocab_fr) # We generate the random french word
 print(word_picked)
-most_similar = model.most_similar(word_picked)[0][1]
+most_similar = round(model.most_similar(word_picked)[0][1], 3)
 
 
 ##########################################################################################################
@@ -59,7 +59,7 @@ def similarity_score():
         elif word1 == word2 : 
             return render_template('./win.html')   
         else : 
-            result = model.similarity(word1, word2)
+            result = round(model.similarity(word1, word2), 3)
             word_proposed = Proposition(id, word2, result)
             propositions.append(word_proposed)
             table = Historique(propositions)
