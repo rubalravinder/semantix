@@ -27,14 +27,15 @@ class Historique(Table):
     mot = Col('mot')
     score = Col('score')
 
-    def sort_propositions(self, propositions):
-        # sort all scores
-        scores = [prop.get_score() for prop in propositions]
-        scores_sorted = scores.sort()
+    # def sort_propositions(self, propositions):
+    #     # sort all scores
+    #     scores = [prop.get_score() for prop in propositions]
+    #     scores_sorted = scores.sort()
 
-        # classify propositions
-        ###### A COMPLETER ######
-
+    #     # classify propositions
+    #     ###### A COMPLETER ######
+    #     for score in scores_sorted:
+    #         if score in 
         
 
 
@@ -46,5 +47,6 @@ class Proposition(object):
         self.mot = mot
         self.score = score
 
-    def get_score(self):
-        return self.score
+    # def get_score(self):
+    #     return self.score
+

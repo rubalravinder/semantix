@@ -4,6 +4,7 @@ from gensim.models import KeyedVectors
 import warnings
 from forms import *
 import os
+import operator
 
 
 warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim') # not sure it's useful there
@@ -53,7 +54,6 @@ def similarity_score():
 
         word1 = word_picked
         word2 = request.form["text"]
-        print(word2)
         if word2 not in vocab_fr :
             return render_template('./error_word.html')
         elif word1 == word2 : 
@@ -62,7 +62,8 @@ def similarity_score():
             result = round(model.similarity(word1, word2), 3)
             word_proposed = Proposition(id, word2, result)
             propositions.append(word_proposed)
-            table = Historique(propositions)
+            propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
+            table = Historique(propositions_sorted)
             id+=1
         return render_template("/home.html", form=form, table=table, most = most_similar)
         
