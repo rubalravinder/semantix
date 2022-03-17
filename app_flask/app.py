@@ -51,6 +51,11 @@ def win():
     return render_template('./win.html')
 
 
+@app.route("/test_titre", methods=["GET", "POST"])
+def test_titre():
+    return render_template('./test_titre.html')
+
+
 @app.route("/play", methods=["GET", "POST"])
 def similarity_score():
     form = SimilarityForm()
