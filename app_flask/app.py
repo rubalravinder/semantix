@@ -20,10 +20,10 @@ app.config['SECRET_KEY'] = SECRET_KEY
 # Let's load the Word Embeddings model trained with the .bin composed of tons of french words.
 # Can't really explain how it's working for the moment. 
 model = KeyedVectors.load_word2vec_format("../Data/model_leger.bin", binary=True, unicode_errors="ignore")
-vocab_fr = load_vocab_fr() # We load the french dictionnary 
-word_picked = pick_random_word(vocab_fr, model) # We generate the random french word
+vocab_fr = load_vocab_fr(model) # We load the french dictionnary 
+word_picked = 'table' # We generate the random french word
 print(word_picked)
-most_similar = round(model.most_similar(word_picked)[0][1], 3)
+most_similar = 0.65
 
 
 ##########################################################################################################
@@ -38,7 +38,18 @@ propositions = []
 
 @app.route("/", methods=["GET", "POST"])
 def bouton():
+    global word_picked
+    global most_similar
+    word_picked = pick_random_word(vocab_fr)
+    most_similar = round(model.most_similar(word_picked)[0][1], 3)
+    print(word_picked)
+    print(most_similar)
     return render_template('./home.html')
+
+
+@app.route("/win", methods=["GET", "POST"])
+def win():
+    return render_template('./win.html')
 
 
 @app.route("/play", methods=["GET", "POST"])

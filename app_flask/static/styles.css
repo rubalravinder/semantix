@@ -16,7 +16,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
-
+    color: #03e9f4;
 }
 
 a{
@@ -108,3 +108,58 @@ a span:nth-child(4){
         bottom: 100%;
     }
 }
+
+.main {
+    height: 100vh;
+  }
+  
+  .icon {
+    width: 65px;
+    height: 65px;
+    margin: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all .4s;
+  }
+  
+  .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .icon:nth-child(1):hover {
+    box-shadow: 0 0 0 10px #1877f2;
+  }
+  
+  .icon:nth-child(2):hover {
+    box-shadow: 0 0 0 10px #c32aa3;
+  }
+  
+  .icon:nth-child(3):hover {
+    box-shadow: 0 0 0 10px #25d366;
+  }
+  
+  .icon:nth-child(4):hover {
+    box-shadow: 0 0 0 10px #1da1fe;
+  }
+
+  .fa-facebook {
+    color: #1877f2;
+    filter: drop-shadow(0 0 10px #1877f2);
+  }
+  
+  .fa-instagram {
+    color: #c32aa3;
+    filter: drop-shadow(0 0 10px #c32aa3);
+  }
+  
+  .fa-whatsapp {
+    color: #25d366;
+    filter: drop-shadow(0 0 10px #25d366);
+  }
+  
+  .fa-twitter {
+    color: #1da1f2;
+    filter: drop-shadow(0 0 10px #1da1f2);
+  }

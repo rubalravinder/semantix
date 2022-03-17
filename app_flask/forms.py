@@ -5,21 +5,19 @@ from wtforms import StringField, TextAreaField, SubmitField, validators
 from flask_table import Table, Col
 # import unidecode
 
-def load_vocab_fr():
+def load_vocab_fr(model_word):
     '''This function loads our french dictionnary and transforms it as a list'''
     words = pd.read_csv('../Data/liste_francais.txt', encoding = 'latin1', header = None)
     vocab = words.iloc[:,0].values.tolist()
     for word in vocab : 
-        if word.isalnum() == False or word[0].isupper() :
+        if model_word.has_index_for(word) == False :
             vocab.remove(word)
     return vocab
 
 
-def pick_random_word(mots_fr, model_w2vec):
-    '''This function picks randomly a word from our french dictionnary'''
-    word_to_guess = "hjhkjhjkn"
-    while model_w2vec.has_index_for(word_to_guess) == False : 
-        word_to_guess = random.choice(mots_fr)
+def pick_random_word(mots_fr):
+    '''This function picks randomly a word from our french dictionnary''' 
+    word_to_guess = random.choice(mots_fr)
     return word_to_guess
 
 
