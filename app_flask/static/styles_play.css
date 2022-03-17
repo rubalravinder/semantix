@@ -4,6 +4,7 @@ html {
 }
 
 body {
+    display:flex;
     background-color: #131416;
     font-family: Arial;
     align-items: center;
