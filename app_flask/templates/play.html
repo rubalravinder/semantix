@@ -25,7 +25,29 @@
 
 
 
-    <p id='demo' style="display: none">Le mot est composé de 9 lettres</p>
+    <div style = "width:100%">
+		
+        <div style = "width:100%">
+           <h1>A vous de jouer, devinez le mot !</h1>
+           <br><br>
+           <br><br>
+        </div>
+           
+        <div style = "height:200px; width:20%; float:left;">
+           <div><b>Informations</b></div>
+                <p>Aujourd'hui, le mot le plus proche a une similarité de {{most}}</p><br />
+                <br />
+                <br />
+                <p>Le mot de la veille était : <br> {{ previous_word }}</p>
+                <br />
+                <br />
+                <p id='demo' style="display: none">Le mot est composé de 9 lettres</p>
+                <br><br>
+                <br><br>
+                <button class="clickhere"> INDICE </button>
+                <br><br>
+                <br><br>
+                <button class="clickhere"> ABANDONNER </button>
 
 <button class="clickhere"> INDICE </button>
 </div>        

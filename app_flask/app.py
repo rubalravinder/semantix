@@ -28,6 +28,7 @@ vocab_fr = load_vocab_fr(model) # We load the french dictionnary
 
 word_picked = 'table' # We generate the random french word
 print(word_picked)
+list_of_word_picked = [word_picked]
 most_similar = 0.65
 id = 0
 propositions = []
@@ -39,7 +40,9 @@ propositions = []
 def bouton():
     global word_picked
     global most_similar
+    global list_of_word_picked
     word_picked = pick_random_word(vocab_fr)
+    list_of_word_picked.append(word_picked)
     most_similar = round(model.most_similar(word_picked)[0][1], 3)
     print(word_picked)
     print(most_similar)
@@ -66,6 +69,7 @@ def similarity_score():
     global word_picked
     global vocab_fr
     global most_similar
+    global list_of_word_picked
 
     # Populate table
     table = Historique(propositions)
@@ -85,10 +89,10 @@ def similarity_score():
             propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
             table = Historique(propositions_sorted)
             id+=1
-        return render_template("/play.html", form=form, table=table, most = most_similar)
+        return render_template("/play.html", form=form, table=table, most = most_similar, previous_word = list_of_word_picked[-2])
         
     else:
-        return render_template("/play.html", form=form, table=table, most = most_similar)
+        return render_template("/play.html", form=form, table=table, most = most_similar, previous_word = list_of_word_picked[-2])
 
 
 
