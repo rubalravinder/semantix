@@ -36,8 +36,12 @@ most_similar = round(model.most_similar(word_picked)[0][1], 3)
 id = 0
 propositions = []
 
-
 @app.route("/", methods=["GET", "POST"])
+def bouton():
+    return render_template('./home.html')
+
+
+@app.route("/play", methods=["GET", "POST"])
 def similarity_score():
     form = SimilarityForm()
 
@@ -65,10 +69,11 @@ def similarity_score():
             propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
             table = Historique(propositions_sorted)
             id+=1
-        return render_template("/home.html", form=form, table=table, most = most_similar)
+        return render_template("/play.html", form=form, table=table, most = most_similar)
         
     else:
-        return render_template("/home.html", form=form, table=table, most = most_similar)
+        return render_template("/play.html", form=form, table=table, most = most_similar)
+
 
 
 

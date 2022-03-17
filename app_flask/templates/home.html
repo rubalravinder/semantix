@@ -1,36 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<div class="contact">
-    <h3>Get similarity of your word</h3>
-    <h4>Aujourd'hui le mot le plus proche a une similarité de
-        <p>{{most}}</p>  </h4>   
-    <!-- Just here i use "url_for" to call the function get_contact.
-            This function return the html code of our contact page-->
-    <form action="{{ url_for('similarity_score') }}" method=post>
-        <div>
-            <!-- Content of your request -->
-            <p>
-                {{ form.text.label }} <br>
-                {{ form.text(placeholder='Your word') }}
-            </p>
-            <!-- Submit button -->
-            <p>
-                {{ form.submit }}
-            </p>
-            <p> {{ table }} </p>
-        </div>
-    </form>
 
 
+<head>
+    <link rel="stylesheet" type="test/css" href="../static/test.css">
+</head>
+
+<body>
+<a href="./play">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Jouez ! 
+  </a>
 
 
-    <p id='demo' style="display: none">Le mot est composé de 9 lettres</p>
-
-<button class="clickhere"> INDICE </button>
-</div>        
-
-{% endblock %}
+  </body>
+  </html>
 
 
-
+  {% endblock %}

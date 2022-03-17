@@ -10,19 +10,18 @@ def load_vocab_fr():
     words = pd.read_csv('../Data/liste_francais.txt', encoding = 'latin1', header = None)
     vocab = words.iloc[:,0].values.tolist()
     for word in vocab : 
-        if word.isalnum() == False or word.isupper() :
+        if word.isalnum() == False or word[0].isupper() :
             vocab.remove(word)
-        else : 
-            unidecode.unidecode(word)
     return vocab
 
 
 def pick_random_word(mots_fr, model_w2vec):
     '''This function picks randomly a word from our french dictionnary'''
-    word_to_guess = random.choice(mots_fr)
-    while model_w2vec.most_similar(word_to_guess)[0][1] < 0.6 :
+    word_to_guess = "hjhkjhjkn"
+    while model_w2vec.has_index_for(word_to_guess) == False : 
         word_to_guess = random.choice(mots_fr)
     return word_to_guess
+
 
 
 class SimilarityForm(FlaskForm):
