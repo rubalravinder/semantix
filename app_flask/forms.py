@@ -3,7 +3,7 @@ import random
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField, validators
 from flask_table import Table, Col
-import unidecode
+# import unidecode
 
 def load_vocab_fr():
     '''This function loads our french dictionnary and transforms it as a list'''
