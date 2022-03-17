@@ -12,7 +12,7 @@ warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim') 
 
 app = Flask(__name__)
 
- # generate a secret key for the similarity form (html page test_similarity)
+# generate a secret key for the similarity form (html page test_similarity)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 

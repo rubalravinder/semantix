@@ -1,38 +1,64 @@
-{% extends "layout.html" %}
-{% block content %}
+<!DOCTYPE html>
+
+<!-- add the right css file -->
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('.static', filename='styles_play.css')}}">
+{% endblock %}
+<html>
 
 <title> SEMANTLE</title>
 
-<div class="contact">
-    <h1>A vous de jouer, devinez le mot !</h1> <br><br>
-    <h2>Aujourd'hui le mot le plus proche a une similarité de
-        <p>{{most}}</p> 
+<head></head>
+<body>
 
-    <form action="{{ url_for('similarity_score') }}" method=post>
-        <div>
-            <!-- Content of your request -->
-            <p>
-                {{ form.text.label }} <br>
-                {{ form.text(placeholder='Your word') }}
-            </p>
-            <!-- Submit button -->
-            <p>
-                {{ form.submit }}
-            </p> <br> <hr><br>
-            <h3>Your guesses</h3>
-            <p> {{ table }} </p>
+    <div style = "width:100%">
+		
+        <div style = "width:100%">
+           <h1>A vous de jouer, devinez le mot !</h1>
+           <br><br>
+           <br><br>
         </div>
-    </form>
+           
+        <div style = "height:200px; width:20%; float:left;">
+           <div><b>Informations</b></div>
+                <p>Aujourd'hui, le mot le plus proche a une similarité de {{most}}</p><br />
+                <br />
+                <br />
+                <p>Le mot de la veille était : <br> -mettre une variable ici-</p>
+                <br />
+                <br />
+                <p id='demo' style="display: none">Le mot est composé de 9 lettres</p>
+                <br><br>
+                <br><br>
+                <button class="clickhere"> INDICE </button>
+                <br><br>
+                <br><br>
+                <button class="clickhere"> ABANDONNER </button>
 
+        </div>
+           
+        <div style = "height:200px; width:80%; float:left;" >
+            <form action="{{ url_for('similarity_score') }}" method=post>
+                <div>
+                    <!-- Content of your request -->
+                    <p>
+                        {{ form.text.label }} <br>
+                        {{ form.text(placeholder='Votre mot') }}
+                    </p>
+                    <!-- Submit button -->
+                    <p>
+                        {{ form.submit }}
+                    </p> <br> <hr><br>
+                    <b>Vos propositions</b>
+                    <p> {{ table }} </p>
+        </div>
+        </div>
+           
+     </div>   
 
+{% block content %}{% endblock %}
 
-
-    <p id='demo' style="display: none">Le mot est composé de 9 lettres</p>
-
-<button class="clickhere"> INDICE </button>
-</div>        
-
-{% endblock %}
-
+</body>
+</html>
 
 

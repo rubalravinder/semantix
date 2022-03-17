@@ -24,7 +24,7 @@ def pick_random_word(mots_fr):
 
 class SimilarityForm(FlaskForm):
     text = TextAreaField("", [validators.InputRequired()])
-    submit = SubmitField("Send")
+    submit = SubmitField("Envoyer")
 
 # Declare table
 class Historique(Table):

@@ -1,0 +1,33 @@
+html { 
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #131416;
+    font-family: Arial;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: aliceblue;
+}
+
+h1 {
+    color: #03e9f4;
+    font-size:xx-large;
+}
+
+b {
+    color: #1d969c;
+    font-weight: bold;
+    font-size: large;
+    text-decoration: underline;
+
+}
+
+p {
+    color: #ffffff;
+    font-size: medium;
+    font-weight: normal;
+
+}
