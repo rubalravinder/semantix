@@ -7,7 +7,7 @@ body {
     display:flex;
     background-color: #131416;
     font-family: Arial;
-    align-items: center;
+    align-items: top;
     justify-content: center;
     text-align: center;
     color: aliceblue;
