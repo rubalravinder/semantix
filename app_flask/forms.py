@@ -23,7 +23,7 @@ def pick_random_word(mots_fr):
 
 
 class SimilarityForm(FlaskForm):
-    text = TextAreaField("", [validators.InputRequired()])
+    text = TextAreaField("Essayez un mot", [validators.InputRequired()])
     submit = SubmitField("Envoyer")
 
 # Declare table

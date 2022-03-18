@@ -15,7 +15,7 @@
            <br><br>
         </div>
            
-        <div style = "height:200px; width:20%; float:left;">
+        <div style = "height:200px; width:40%; float:left;">
            <div><b>Informations</b></div>
                 <p>Aujourd'hui, le mot le plus proche a une similarité de {{most}}</p><br />
                 <br />
@@ -34,7 +34,7 @@
                     <button class="clickhere"> ABANDONNER </button>
                 </a>
           </div>
-          <div style = "height:200px; width:80%; float:left;">
+          <div style = "height:200px; width:60%; float:left;">
               <div class="contact">       
                   <form action="{{ url_for('similarity_score') }}" method=post>
                       <div>
@@ -46,8 +46,9 @@
                         <!-- Submit button -->
                         <p>
                             {{ form.submit }}
-                        </p> <br> <hr><br>
-                        <h3>Vos propositions</h3>
+                        </p>
+                        <br> <hr><br>
+                        <b>Vos propositions</b>
                         <p> {{ table }} </p>
                     </div>
                 </form>
