@@ -7,6 +7,7 @@ import os
 import operator
 
 
+
 warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim') # not sure it's useful there
 
 
@@ -33,6 +34,7 @@ longueur_mot = 0
 most_similar = 0.65
 id = 1
 propositions = []
+nlp = fr_core_news_md.load()
 
 
 # HTML pages
@@ -43,7 +45,8 @@ def bouton():
     global most_similar
     global list_of_word_picked
     global longueur_mot
-    word_picked = pick_random_word(vocab_fr)
+    global nlp
+    word_picked = pick_random_word(vocab_fr, nlp)
     list_of_word_picked.append(word_picked)
     longueur_mot = len(word_picked)
     most_similar = round(model.most_similar(word_picked)[0][1], 3)

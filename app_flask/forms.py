@@ -3,6 +3,8 @@ import random
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField, validators
 from flask_table import Table, Col
+import spacy
+import fr_core_news_md
 # import unidecode
 
 def load_vocab_fr(model_word):
@@ -15,10 +17,14 @@ def load_vocab_fr(model_word):
     return vocab
 
 
-def pick_random_word(mots_fr):
+def pick_random_word(mots_fr, model_nlp):
     '''This function picks randomly a word from our french dictionnary''' 
+    
     word_to_guess = random.choice(mots_fr)
-    return word_to_guess
+    word_to_guess = model_nlp(word_to_guess)
+    print(word_to_guess)
+    word_picked = word_to_guess[0].lemma_ 
+    return word_picked
 
 
 
