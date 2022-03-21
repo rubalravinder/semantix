@@ -18,11 +18,32 @@
            
                 <p>Le mot le plus proche du <b>mot à trouver </b> a une similarité de <b>{{most}}</b></p><br />
                 <br />
-                <br />
                 <p>Le mot précédent était : <br> <b> {{ previous_word }}</b></p>
-                <br />
-                <br />
-                <br><br>
+                
+                <div id="regle" onclick="regle_off()">
+                    <div>Voici les règles de SEMANTIX
+                        <br/>
+                        <h2> PRINCIPE</h2>
+                        <p> Le but de SEMANTIX est d'utilisé des modèles d'intelligence artificielle.... blablabla</p>
+                        <br/>
+                        <h2>COMMENT ON JOUE ?</h2>
+                    </div>
+                      </div>
+                      
+                      <div style="padding:20px">
+                        <button onclick="regle_on()">REGLES</button>
+                      </div>
+                      
+                      <script>
+                      function regle_on() {
+                        document.getElementById("regle").style.display = "block";
+                      }
+                      
+                      function regle_off() {
+                        document.getElementById("regle").style.display = "none";
+                      }
+                      </script>
+
 
                 <div id="overlay" onclick="off()">
                 <div id="text" >Le mot que l'on cherche est composé de {{ longueur_mot }} lettres.</div>
@@ -42,9 +63,7 @@
                   }
                   </script>
 
-                  
-                <br><br>
-                <br><br>
+                <br>
                 <a href="./">
                 <button class="clickhere"> ABANDONNER </button>
                 </a>
