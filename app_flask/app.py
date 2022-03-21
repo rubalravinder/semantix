@@ -66,11 +66,6 @@ def win():
     return render_template('./win.html')
 
 
-@app.route("/test_titre", methods=["GET", "POST"])
-def test_titre():
-    return render_template('./test_titre.html')
-
-
 @app.route("/play", methods=["GET", "POST"])
 def similarity_score():
     form = SimilarityForm()
@@ -87,7 +82,7 @@ def similarity_score():
         word2 = request.form["text"]
            
         if word2 not in vocab_fr :
-            return render_template('./error_word.html')
+            return render_template("/play.html", form=form, table=table, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, erreur='Mot inexistant, essayez-en un autre')
         elif word1 == word2 :
             propositions.clear()
             propositions_str.clear()
