@@ -34,7 +34,7 @@ def check_compatibility(word_picked_bla, model, mots_fr, model_nlp):
 
 
 class SimilarityForm(FlaskForm):
-    text = TextAreaField("Essayez un mot", [validators.InputRequired()])
+    text = StringField("Essayez un mot", [validators.InputRequired()])
     submit = SubmitField("Envoyer")
 
 # Declare table

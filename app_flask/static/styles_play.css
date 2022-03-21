@@ -81,13 +81,6 @@ p {
   margin-top: 0px;
   padding: 0px 30px;
 }
-/* .contact h3 {
-  color: #488ace;
-  text-align: center;
-  font-weight: 600;
-  margin-top: 0px;
-  margin-bottom: 0px;
-} */
 .contact p {
   margin: 0 0px 10px;
   margin-left: 0px!important;
@@ -101,13 +94,7 @@ p {
   border: 1px solid #dddddd78;
   padding: 10px;
   border-radius: 4px;
-}
-.contact textarea#message {
-  width: 50%;
-  height: 122px;
-  border: 1px solid #dddddd78;
-  border-radius: 4px;
-  padding: 10px;
+  text-align: center;
 }
 .contact input#submit {
   color: rgb(255, 255, 255);
@@ -120,15 +107,10 @@ p {
   box-shadow: 0px 0px 4px 0px #00000087;
   margin-top: 15px;
 }
-.contact textarea#text {
-  text-align: center;
-  width: 50%;
-  height: 50px;
-  border: 1px solid #dddddd78;
-  border-radius: 4px;
-  padding: 10px;
-}
 
+  /*******************************************************************
+                                OVERLAY BUTTONS
+*******************************************************************/
 
 button {
   border: none;
