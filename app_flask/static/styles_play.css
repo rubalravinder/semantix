@@ -14,7 +14,7 @@ body {
 }
 
 h1 {
-    color: #03e9f4;
+    color: #0d5674;
     font-size:xx-large;
 }
 
@@ -22,7 +22,7 @@ b {
     color: #1d969c;
     font-weight: bold;
     font-size: large;
-    text-decoration: underline;
+    
 
 }
 
@@ -128,3 +128,35 @@ p {
   border-radius: 4px;
   padding: 10px;
 }
+
+
+button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #0d5674;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+
+}
+

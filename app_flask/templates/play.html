@@ -11,27 +11,42 @@
 		
         <div style = "width:100%">
            <h1>A vous de jouer, devinez le mot !</h1>
-           <br><br>
-           <br><br>
+           
         </div>
            
         <div style = "height:200px; width:40%; float:left;">
-           <div><b>Informations</b></div>
-                <p>Aujourd'hui, le mot le plus proche a une similarité de {{most}}</p><br />
+           
+                <p>Le mot le plus proche du <b>mot à trouver </b> a une similarité de <b>{{most}}</b></p><br />
                 <br />
                 <br />
-                <p>Le mot de la veille était : <br> {{ previous_word }}</p>
+                <p>Le mot précédent était : <br> <b> {{ previous_word }}</b></p>
                 <br />
                 <br />
                 <br><br>
-                <br><br>
-                <div class="tooltip">Passez le curseur ici pour avoir un indice
-                    <span class="tooltiptext">Le mot est composé de {{ longueur_mot }} lettres.</span>
+
+                <div id="overlay" onclick="off()">
+                <div id="text" >Le mot que l'on cherche est composé de {{ longueur_mot }} lettres.</div>
                   </div>
+                  
+                  <div style="padding:20px">
+                    <button onclick="on()">INDICE</button>
+                  </div>
+                  
+                  <script>
+                  function on() {
+                    document.getElementById("overlay").style.display = "block";
+                  }
+                  
+                  function off() {
+                    document.getElementById("overlay").style.display = "none";
+                  }
+                  </script>
+
+                  
                 <br><br>
                 <br><br>
                 <a href="./">
-                    <button class="clickhere"> ABANDONNER </button>
+                <button class="clickhere"> ABANDONNER </button>
                 </a>
           </div>
           <div style = "height:200px; width:60%; float:left;">
@@ -47,7 +62,7 @@
                         <p>
                             {{ form.submit }}
                         </p>
-                        <br> <hr><br>
+                        <br> <hr color="#0d5674" style= "height:2px"></hr><br>
                         <b>Vos propositions</b>
                         <p> {{ table }} </p>
                     </div>
@@ -55,10 +70,14 @@
               </div>
             </div>
           </div>  
+        </div>
+  
 
-
+        </body>
 {% block content %}{% endblock %}
-</body>
+
+
+
 </html>
 
 
