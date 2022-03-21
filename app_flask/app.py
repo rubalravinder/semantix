@@ -51,10 +51,12 @@ def bouton():
 
     # choix du mot à deviner
     word_picked = pick_random_word(vocab_fr, nlp)
+    print(word_picked)
+    word_picked = check_compatibility(word_picked, model, vocab_fr, nlp)
+    print(word_picked)
     list_of_word_picked.append(word_picked)
     longueur_mot = len(word_picked)
     most_similar = round(model.most_similar(word_picked)[0][1], 3)
-    print(word_picked)
     print(most_similar)
     return render_template('./home.html')
 
