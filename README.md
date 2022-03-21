@@ -29,7 +29,6 @@ https://www.alibabacloud.com/blog/how-to-create-and-deploy-a-pre-trained-word2ve
 CHOSES A FAIRE : 
  - régler problèmes du dictionnaire français (Martin)
  - trouver des trucs beaux et stylés à rajouter en css (Martin)
- - rajouter bouton indice (Rubal) avec texte qui s'affiche
- - scaling du tableau des réponses (Rubal)
  - afficher mot inexistant sur la même page
- - Quand gagné, boutton rejouer et ça repart à zéro
+ - quand le même mot est proposé par le joueur, réordonner le tableau par score (Rubal)
+ - highlight le dernier mot proposé dans la table (récup variable word_proposed et la modif en html?)
