@@ -34,6 +34,7 @@ longueur_mot = 0
 most_similar = 0.65
 id = 1
 propositions = []
+propositions_str = []
 nlp = fr_core_news_md.load()
 
 
@@ -41,11 +42,14 @@ nlp = fr_core_news_md.load()
 
 @app.route("/", methods=["GET", "POST"])
 def bouton():
-    global word_picked
-    global most_similar
-    global list_of_word_picked
-    global longueur_mot
-    global nlp
+    global word_picked, most_similar, list_of_word_picked, longueur_mot, nlp, id, propositions, propositions_str
+
+    # au cas où abandon
+    propositions.clear()
+    propositions_str.clear()
+    id = 1
+
+    # choix du mot à deviner
     word_picked = pick_random_word(vocab_fr, nlp)
     list_of_word_picked.append(word_picked)
     longueur_mot = len(word_picked)
@@ -70,13 +74,7 @@ def similarity_score():
     form = SimilarityForm()
 
     # Initialize variables
-    global propositions
-    global id
-    global word_picked
-    global vocab_fr
-    global most_similar
-    global list_of_word_picked
-    global longueur_mot
+    global propositions, id, word_picked, vocab_fr, most_similar, list_of_word_picked, longueur_mot, propositions_str
 
     # Populate table
     table = Historique(propositions)
@@ -85,19 +83,24 @@ def similarity_score():
 
         word1 = word_picked
         word2 = request.form["text"]
+           
         if word2 not in vocab_fr :
             return render_template('./error_word.html')
         elif word1 == word2 :
             propositions.clear()
+            propositions_str.clear()
             id = 1
-            return render_template('./win.html')   
+            return render_template('./win.html')  
         else : 
             result = round(model.similarity(word1, word2), 3)
             word_proposed = Proposition(id, word2, result)
-            propositions.append(word_proposed)
-            propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
-            table = Historique(propositions_sorted)
-            id+=1
+
+            if word2 not in propositions_str:
+                propositions.append(word_proposed)
+                propositions_str.append(word2)
+                propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
+                table = Historique(propositions_sorted)
+                id+=1
         return render_template("/play.html", form=form, table=table, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot)
         
     else:

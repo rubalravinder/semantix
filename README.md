@@ -11,11 +11,13 @@
 
 ## Environnement virtuel
 - python = 3.9.10
-- pymagnitude (si tuto)
+- pandas
 - gensim
 - Flask-WTF
 - WTForms
 - Flask-Table (test pour test_similarity)
+- spacy
+- fr_core_news_md
 
 
 ### Tuto déploiement d'un modèle
