@@ -173,6 +173,10 @@ button {
 .table__row:nth-child(even) {
   background-color: #e5e5e5;
 }
+/* 
+.table__row:last-of-type {
+  background-color: #1d969c;
+} */
 
 .table__header {
   font-size:large;

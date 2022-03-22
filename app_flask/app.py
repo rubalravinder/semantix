@@ -101,7 +101,7 @@ def similarity_score():
                 data.append(word_proposed)
                 propositions_str.append(word2)
                 # propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
-                sorted_data = tuple(sorted(data, key=operator.itemgetter(2)))
+                sorted_data = tuple(sorted(data, key=operator.itemgetter(2), reverse=True))
                 data = tuple(data)
                 id+=1
         return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data)
