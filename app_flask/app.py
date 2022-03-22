@@ -39,6 +39,7 @@ nlp = fr_core_news_md.load()
 headings = ('id', 'mot', 'score')
 data = ()
 sorted_data = ()
+word_proposed = ()
 
 
 # HTML pages
@@ -76,8 +77,9 @@ def similarity_score():
     form = SimilarityForm()
 
     # Initialize variables
-    global id, word_picked, vocab_fr, most_similar, list_of_word_picked, longueur_mot, propositions_str, headings, data, sorted_data
+    global id, word_picked, vocab_fr, most_similar, list_of_word_picked, longueur_mot, propositions_str, headings, data, sorted_data, word_proposed
 
+    print('avant post:', word_proposed)
     if request.method == "POST":
 
         word1 = word_picked
@@ -104,50 +106,12 @@ def similarity_score():
                 sorted_data = tuple(sorted(data, key=operator.itemgetter(2), reverse=True))
                 data = tuple(data)
                 id+=1
-        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data)
-        
+                print('dans post:', word_proposed)
+
+        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed)
+    
     else:
-        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data)
-
-@app.route("/test_table", methods=["GET", "POST"])
-def sim_score():
-    form = SimilarityForm()
-
-    # Initialize variables
-    global propositions, id, word_picked, vocab_fr, most_similar, list_of_word_picked, longueur_mot, propositions_str, headings, data
-
-
-    if request.method == "POST":
-
-        word1 = word_picked
-        word2 = request.form["text"]
-           
-        if word2 not in vocab_fr :
-            return render_template("/test_table.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, erreur='Mot inexistant, essayez-en un autre', headings=headings, data=data)
-        elif word1 == word2 :
-            propositions.clear()
-            propositions_str.clear()
-            id = 1
-            return render_template('./win.html')  
-        else : 
-            result = round(model.similarity(word1, word2), 3)
-            word_proposed = (id, word2, result)
-            print('word_proposed:', word_proposed)
-
-            if word2 not in propositions_str:
-                data = list(data)
-                data.append(word_proposed)
-                print('data:', data)
-                propositions_str.append(word2)
-                data = tuple(data)
-                # propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
-                # table = Historique(propositions_sorted)
-                id+=1
-        return render_template("/test_table.html", form=form,  most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=data)
-        
-    else:
-        return render_template("/test_table.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=data)
-
+        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed)
 
 # Execute program
 

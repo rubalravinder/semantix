@@ -16,7 +16,7 @@
                 <p>Le mot le plus proche du <b>mot à trouver </b> a une similarité de <b>{{most}}</b></p><br />
                 <br />
                 <p>Le mot précédent était : <br> <b> {{ previous_word }}</b></p>
-                
+                <!-- Bouton overlay règles du jeu -->
                 <div id="regle" onclick="regle_off()">
                     <div>Voici les règles de SEMANTIX
                         <br/>
@@ -41,7 +41,7 @@
                       }
                       </script>
 
-
+                <!-- Bouton overlay indice -->
                 <div id="overlay" onclick="off()">
                 <div id="text" >Le mot que l'on cherche est composé de {{ longueur_mot }} lettres.</div>
                   </div>
@@ -61,24 +61,41 @@
                   </script>
 
                 <br>
+                <!-- Bouton abandonner -->
                 <a href="./">
                 <button class="clickhere"> ABANDONNER </button>
                 </a>
           </div>
           <div style = "height:200px; width:60%; float:left;">
+              <!-- Champ de texte -->
               <div class="contact">       
                   <form action="{{ url_for('similarity_score') }}" method=post>
                       <div>
-                        <!-- Content of your request -->
                         <p>
                             {{ form.text.label }} <br>
                             {{ form.text(placeholder='Votre mot') }}
                         </p> {{ erreur }}
-                        <!-- Submit button -->
                         <p>
                             {{ form.submit }}
                         </p>
                         <br> <hr color="#0d5674" style= "height:2px"></hr><br>
+                        <!-- Tableau de la dernière proposition -->
+                        <b>Votre dernière proposition</b>
+                        <table class="table">
+                          <tr class="table__header">
+                            {% for header in headings %}
+                            <th class="table__cell"> {{ header }}</th>
+                            {% endfor %}
+                          </tr>
+                          <!-- {% for row in data %} -->
+                          <tr class="table__row">
+                            {% for cell in word_proposed %}
+                            <td class="table__cell"> {{ cell }} </td>
+                            {% endfor %}
+                          </tr>
+                          <!-- {% endfor %} -->
+                        </table>
+                        <!-- Tableau des propositions -->
                         <b>Vos propositions</b>
                         <table class="table">
                           <tr class="table__header">
