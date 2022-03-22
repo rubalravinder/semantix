@@ -29,5 +29,4 @@ https://www.alibabacloud.com/blog/how-to-create-and-deploy-a-pre-trained-word2ve
 CHOSES A FAIRE : 
  - régler problèmes du dictionnaire français (Martin)
  - trouver des trucs beaux et stylés à rajouter en css (Martin)
- - quand le même mot est proposé par le joueur, réordonner le tableau par score (Rubal)
  - highlight le dernier mot proposé dans la table (récup variable word_proposed et la modif en html?)
