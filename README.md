@@ -29,4 +29,4 @@ https://www.alibabacloud.com/blog/how-to-create-and-deploy-a-pre-trained-word2ve
 CHOSES A FAIRE : 
  - régler problèmes du dictionnaire français (Martin)
  - trouver des trucs beaux et stylés à rajouter en css (Martin)
- - highlight le dernier mot proposé dans la table (récup variable word_proposed et la modif en html?)
+ - highlight le dernier mot proposé dans la table (récup variable word_proposed et la modif en html? OU en javascript avec JQuery (semble plus simple))
