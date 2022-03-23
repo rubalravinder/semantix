@@ -134,9 +134,19 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.9);
   z-index: 2;
   cursor: pointer;
+}
+
+#text_indice{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: #2e9bce;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
 }
 
 

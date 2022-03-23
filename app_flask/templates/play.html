@@ -7,7 +7,7 @@
     <div style = "width:100%">
 		
         <div style = "width:100%">
-           <h1>A vous de jouer, devinez le mot !</h1>
+          <!-- <h1>A vous de jouer, devinez le mot !</h1> -->
            
         </div>
            
@@ -17,6 +17,10 @@
                 <br />
                 <p>Le mot précédent était : <br> <b> {{ previous_word }}</b></p>
                 <!-- Bouton overlay règles du jeu -->
+                <br/>
+
+                <a href="./contact" >Cliquez ici pour nous envoyer un e-mail !</a>
+                <br/>
                 <div id="regle" onclick="regle_off()">
                     <div>Voici les règles de SEMANTIX
                         <br/>
@@ -28,7 +32,7 @@
                       </div>
                       
                       <div style="padding:20px">
-                        <button onclick="regle_on()">REGLES</button>
+                        <button  style = "background-color: #202953;" onclick="regle_on()">REGLES</button>
                       </div>
                       
                       <script>
@@ -43,7 +47,7 @@
 
                 <!-- Bouton overlay indice -->
                 <div id="overlay" onclick="off()">
-                <div id="text" >Le mot que l'on cherche est composé de {{ longueur_mot }} lettres.</div>
+                <div id="text_indice" >  <h2>INDICE</h2> Le mot que l'on cherche est composé de {{ longueur_mot }} lettres.</div>
                   </div>
                   
                   <div style="padding:20px">
@@ -63,7 +67,7 @@
                 <br>
                 <!-- Bouton abandonner -->
                 <a href="./">
-                <button class="clickhere"> ABANDONNER </button>
+                <button style = "background-color: #883b6a" type="clickhere"> ABANDONNER </button>
                 </a>
           </div>
           <div style = "height:200px; width:60%; float:left;">
@@ -89,7 +93,7 @@
                           </tr>
                         </table>
                         <!-- Tableau des propositions -->
-                        <b>Vos propositions</b>
+                        
                         <table class="table2">
                           <tr class="table2__header">
                             {% for header in headings %}
