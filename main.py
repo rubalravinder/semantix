@@ -21,7 +21,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 # Let's load the Word Embeddings model trained with the .bin composed of tons of french words.
 # Can't really explain how it's working for the moment.
 
-model = KeyedVectors.load_word2vec_format("../Data/model_leger.bin", binary=True, unicode_errors="ignore")
+model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
 vocab_fr = load_vocab_fr(model) # We load the french dictionnary
 
 

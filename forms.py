@@ -9,7 +9,7 @@ import fr_core_news_md
 
 def load_vocab_fr(model_word):
     '''This function loads our french dictionnary and transforms it as a list'''
-    words = pd.read_csv('../Data/liste_francais.txt', encoding = 'latin1', header = None)
+    words = pd.read_csv('./Data/liste_francais.txt', encoding = 'latin1', header = None)
     vocab = words.iloc[:,0].values.tolist()
     for word in vocab : 
         if model_word.has_index_for(word) == False :
