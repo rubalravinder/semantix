@@ -27,7 +27,7 @@ vocab_fr = load_vocab_fr(model) # We load the french dictionnary
 
 # Generate global variables
 
-word_picked = 'table' # We generate the random french word
+word_picked = '' # We generate the random french word
 print(word_picked)
 list_of_word_picked = [word_picked]
 longueur_mot = 0
