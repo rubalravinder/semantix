@@ -1,9 +1,9 @@
 Flask==2.0.3
 Flask_Table==0.5.0
 Flask_WTF==1.0.0
-fr_core_news_md==3.2.0
 gensim==4.1.2
 numpy==1.22.3
 pandas==1.4.1
-spacy==3.2.3
+spacy>=3.0.0,<4.0.0
+https://github.com/explosion/spacy-models/releases/tag/fr_core_news_md-3.2.0/fr_core_news_md-3.2.0.tar.gz
 WTForms==3.0.1
