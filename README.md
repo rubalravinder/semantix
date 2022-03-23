@@ -21,6 +21,8 @@
  - formulaire pour envoyer des mails en python : https://www.tutorialspoint.com/python/python_sending_email.htm
  - liste de mots français courrants, voir ça : https://en.wikipedia.org/wiki/Swadesh_list
 
+- import xtarfile dans main.py et dézip fr_core... et tar-filer le modèle et faire pareil
+
 ## Règles du jeu
 
 - Un objectif : Trouver le mot secret !
