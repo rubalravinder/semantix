@@ -24,7 +24,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 #Let's Unzip the model .bin to the same directory
 untar_model('./Data/model_vector.tar.gz', './Data/')
 print('Model unzipped !')
-model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
+model = KeyedVectors.load_word2vec_format("./Data/model_vector.bin", binary=True, unicode_errors="ignore")
 vocab_fr = load_vocab_fr(model) # We load the french dictionnary
 
 #Let's Unzip the spacy model to the same directory
