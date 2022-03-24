@@ -2,3 +2,4 @@
 test_semantle/
 trained_model_french.bin
 app_flask/__pycache__
+test.ipynb
