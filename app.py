@@ -5,7 +5,7 @@ import warnings
 from forms import *
 import os
 import operator
-
+import spacy
 
 
 warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim') # not sure it's useful there
@@ -20,10 +20,16 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 # Let's load the Word Embeddings model trained with the .bin composed of tons of french words.
 # Can't really explain how it's working for the moment.
-#dezip
-model = KeyedVectors.load_word2vec_format("../Data/model_leger.bin", binary=True, unicode_errors="ignore")
+
+#Let's Unzip the model .bin to the same directory
+unzip_model_W2VEC('./Data/model_compressed.zip', './Data/')
+print('Model unzipped !')
+model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
 vocab_fr = load_vocab_fr(model) # We load the french dictionnary
 
+#Let's Unzip the spacy model to the same directory
+untar_model_spacy('./Data/fr_core_news_md-3.2.0.tar.gz', './Data/')
+print('model_spacy_unziped !')
 
 # Generate global variables
 
@@ -34,7 +40,7 @@ longueur_mot = 0
 most_similar = 0.65
 id = 1
 propositions_str = []
-nlp = fr_core_news_md.load()
+nlp = spacy.load("./Data/fr_core_news_md-3.2.0/fr_core_news_md/fr_core_news_md-3.2.0")
 
 headings = ('id', 'mot', 'score')
 data = ()

@@ -3,8 +3,10 @@ import random
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField, validators
 from flask_table import Table, Col
-import spacy
-import fr_core_news_md
+from zipfile import ZipFile 
+import tarfile
+
+
 # import unidecode
 
 def load_vocab_fr(model_word):
@@ -51,3 +53,16 @@ class Proposition(object):
         self.score = score
 
 
+def unzip_model_W2VEC(path_from, path_to):
+  
+    # specifying the name of the zip file
+    file = path_from
+  
+    # open the zip file in read mode
+    with ZipFile(file, 'r') as zip: 
+    # extract all files to another directory
+        zip.extractall(path_to)
+        
+def untar_model_spacy(path_from, path_to):
+    tf = tarfile.open(path_from)
+    tf.extractall(path_to) 

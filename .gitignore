@@ -1,5 +1,4 @@
 # Files and directories to ignore
 test_semantle/
-Data/
 trained_model_french.bin
 app_flask/__pycache__
