@@ -5,7 +5,7 @@ import warnings
 from forms import *
 import os
 import operator
-
+import spacy
 
 
 warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim') # not sure it's useful there
@@ -21,20 +21,26 @@ app.config['SECRET_KEY'] = SECRET_KEY
 # Let's load the Word Embeddings model trained with the .bin composed of tons of french words.
 # Can't really explain how it's working for the moment.
 
+#Let's Unzip the model .bin to the same directory
+unzip_model_W2VEC('./Data/model_compressed.zip', './Data/')
+print('Model unzipped !')
 model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
 vocab_fr = load_vocab_fr(model) # We load the french dictionnary
 
+#Let's Unzip the spacy model to the same directory
+untar_model_spacy('./Data/fr_core_news_md-3.2.0.tar.gz', './Data/')
+print('model_spacy_unziped !')
 
 # Generate global variables
 
-word_picked = '' # We generate the random french word
+word_picked = 'table' # We generate the random french word
 print(word_picked)
 list_of_word_picked = [word_picked]
 longueur_mot = 0
 most_similar = 0.65
 id = 1
 propositions_str = []
-nlp = fr_core_news_md.load()
+nlp = spacy.load("./Data/fr_core_news_md-3.2.0/fr_core_news_md/fr_core_news_md-3.2.0")
 
 headings = ('id', 'mot', 'score')
 data = ()
@@ -69,7 +75,13 @@ def bouton():
 
 @app.route("/win", methods=["GET", "POST"])
 def win():
-    return render_template('./win.html')
+    global id 
+    return render_template('./win.html', id = id )
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    global id 
+    return render_template('./mail.php', id = id )
 
 
 @app.route("/play", methods=["GET", "POST"])
@@ -79,7 +91,7 @@ def similarity_score():
     # Initialize variables
     global id, word_picked, vocab_fr, most_similar, list_of_word_picked, longueur_mot, propositions_str, headings, data, sorted_data, word_proposed
 
-    print('avant post:', word_proposed)
+    
     if request.method == "POST":
 
         word1 = word_picked
@@ -106,12 +118,13 @@ def similarity_score():
                 sorted_data = tuple(sorted(data, key=operator.itemgetter(2), reverse=True))
                 data = tuple(data)
                 id+=1
-                print('dans post:', word_proposed)
+                
 
         return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed)
     
     else:
         return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed)
+
 
 # Execute program
 
