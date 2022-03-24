@@ -22,13 +22,13 @@ app.config['SECRET_KEY'] = SECRET_KEY
 # Can't really explain how it's working for the moment.
 
 #Let's Unzip the model .bin to the same directory
-unzip_model_W2VEC('./Data/model_compressed.zip', './Data/')
+untar_model('./Data/model_vector.tar.gz', './Data/')
 print('Model unzipped !')
 model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
 vocab_fr = load_vocab_fr(model) # We load the french dictionnary
 
 #Let's Unzip the spacy model to the same directory
-untar_model_spacy('./Data/fr_core_news_md-3.2.0.tar.gz', './Data/')
+untar_model('./Data/fr_core_news_md-3.2.0.tar.gz', './Data/')
 print('model_spacy_unziped !')
 
 # Generate global variables
