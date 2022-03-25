@@ -14,8 +14,14 @@ body {
 }
 
 h1 {
-    color: #0d5674;
+    color: #2b9dca;
     font-size:xx-large;
+}
+
+h2 {
+  color: #8edfff;
+  font-size:large;
+  font-weight: bold;
 }
 
 b {
@@ -30,6 +36,7 @@ p {
     color: #ffffff;
     font-size: medium;
     font-weight: normal;
+    text-align: center;
 
 }
 
@@ -153,17 +160,17 @@ button {
 #regle {
   position: fixed;
   display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  background-color: rgba(0,0,0,0.9);
   z-index: 2;
   cursor: pointer;
+  padding-left: 10%;
+  padding-top: 5%;
+  
 }
-
 
   /*******************************************************************
                                 TABLE PROPOSITIONS
