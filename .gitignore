@@ -1,4 +1,4 @@
 # Files and directories to ignore
-test_semantle/
+#test_semantle/
 #app_flask/__pycache__
-test.ipynb
+#test.ipynb
