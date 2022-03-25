@@ -13,7 +13,6 @@
 ## CHOSES A FAIRE : 
  - régler problèmes du dictionnaire français (Martin)
  - trouver des trucs beaux et stylés à rajouter en css (Martin)
- - highlight le dernier mot proposé dans la table (récup variable word_proposed et la modif en html? OU en javascript avec JQuery (semble plus simple))
  - tester heroku (voir ressources du cours campus)
  - mettre le modèle dans une image docker ou le zipper/tar-gz
  - faire une image docker avec notre app
