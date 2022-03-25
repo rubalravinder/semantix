@@ -120,14 +120,14 @@ def similarity_score():
                 id+=1
                 
 
-        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed)
+        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed, id = id)
     
     else:
-        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed)
+        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed, id = id)
 
 
-# Execute program
+#Execute program
 
-#if __name__ == "__main__":
+if __name__ == "__main__":
     # app.run()
-    #app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0')
