@@ -1,5 +1,7 @@
+from unittest import result
 from numpy import NaN
 from flask import Flask, request, render_template
+import requests
 from gensim.models import KeyedVectors
 import warnings
 from forms import *
@@ -7,9 +9,7 @@ import os
 import operator
 import spacy
 
-
 warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim') # not sure it's useful there
-
 
 app = Flask(__name__)
 
@@ -18,20 +18,11 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 
-# Let's load the Word Embeddings model trained with the .bin composed of tons of french words.
-# Can't really explain how it's working for the moment.
-
-#Let's Unzip the model .bin to the same directory
-#untar_model('./Data/model_vector.tar.gz', './Data/')
-#print('Model unzipped !')
-model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
-vocab_fr = load_vocab_fr(model) # We load the french dictionnary
-
-#Let's Unzip the spacy model to the same directory
-# untar_model('./Data/fr_core_news_md-3.2.0.tar.gz', './Data/')
-# print('model_spacy_unziped !')
 
 # Generate global variables
+
+# model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
+# vocab_fr = load_vocab_fr(model) # We load the french dictionnary
 
 word_picked = 'table' # We generate the random french word
 print(word_picked)
@@ -40,7 +31,7 @@ longueur_mot = 0
 most_similar = 0.65
 id = 1
 propositions_str = []
-nlp = spacy.load("./Data/fr_core_news_md-3.2.0/fr_core_news_md/fr_core_news_md-3.2.0")
+nlp = spacy.load("./fr_core_news_md-3.2.0/fr_core_news_md/fr_core_news_md-3.2.0")
 
 headings = ('id', 'mot', 'score')
 data = ()
@@ -62,13 +53,13 @@ def bouton():
     id = 1
 
     # choix du mot à deviner
-    word_picked = pick_random_word(vocab_fr, nlp)
+    # word_picked = pick_random_word(vocab_fr, nlp)
     print(word_picked)
-    word_picked = check_compatibility(word_picked, model, vocab_fr, nlp)
+    # word_picked = check_compatibility(word_picked, model, vocab_fr, nlp)
     print(word_picked)
     list_of_word_picked.append(word_picked)
     longueur_mot = len(word_picked)
-    most_similar = round(model.most_similar(word_picked)[0][1], 3)
+    # most_similar = round(model.most_similar(word_picked)[0][1], 3)
     print(most_similar)
     return render_template('./home.html')
 
@@ -126,8 +117,51 @@ def similarity_score():
         return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed, id = id)
 
 
+@app.route("/test", methods=["GET", "POST"])
+def sim():
+    form = SimilarityForm()
+
+    # Initialize variables
+    global id, word_picked, most_similar, list_of_word_picked, longueur_mot, propositions_str, headings, data, sorted_data, word_proposed#, vocab_fr
+
+    
+    if request.method == "POST":
+
+        word1 = word_picked
+        word2 = request.form["text"]
+           
+        # if word2 not in vocab_fr :
+        #     return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, erreur='Mot inexistant, essayez-en un autre', headings=headings, data=sorted_data)
+        if word1 == word2 :
+            data = list(data)
+            data.clear()
+            data = tuple(data)
+            propositions_str.clear()
+            id = 1
+            return render_template('./win.html')  
+        else : 
+            requete = {"word":word2}
+            url = 'http://127.0.0.1:5000/'
+            res = requests.post(url, data=requete)
+            result = res.text
+            word_proposed = (id, word2, result)
+
+            if word2 not in propositions_str:
+                data = list(data)
+                data.append(word_proposed)
+                propositions_str.append(word2)
+                # propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
+                sorted_data = tuple(sorted(data, key=operator.itemgetter(2), reverse=True))
+                data = tuple(data)
+                id+=1
+                
+        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed, id = id)
+    
+    else:
+        return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed, id = id)
+
+
 #Execute program
 
 if __name__ == "__main__":
-    # app.run()
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=80, debug=True)

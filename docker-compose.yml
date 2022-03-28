@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  appli:
+    build:
+      dockerfile: ./flask/Dockerfile
+      context: ./
+    ports:
+      - 80:80
+    depends_on:
+      - model
+
+  model:
+    # image: rubalravinder/word2vec_model
+    build:
+      dockerfile: ./model/Dockerfile
+      context: ./
+    ports:
+      - 5000:5000

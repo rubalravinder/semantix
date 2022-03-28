@@ -1,2 +1,0 @@
-#model_leger.bin filter=lfs diff=lfs merge=lfs -text
-#fr_core_news_md-3.2.0 filter=lfs diff=lfs merge=lfs -text
