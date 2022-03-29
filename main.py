@@ -26,7 +26,8 @@ app.config['SECRET_KEY'] = SECRET_KEY
 #print('Model unzipped !')
 model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
 vocab_fr = load_vocab_fr(model) # We load the french dictionnary
-
+dico_fr = pd.read_csv('./Data/liste_francais.txt', encoding = 'latin1', header = None)
+dico_fr = dico_fr.iloc[:,0].values.tolist()
 #Let's Unzip the spacy model to the same directory
 # untar_model('./Data/fr_core_news_md-3.2.0.tar.gz', './Data/')
 # print('model_spacy_unziped !')
@@ -92,7 +93,7 @@ def similarity_score():
     form = SimilarityForm()
 
     # Initialize variables
-    global id, word_picked, vocab_fr, most_similar, list_of_word_picked, longueur_mot, propositions_str, headings, data, sorted_data, word_proposed
+    global id, word_picked, dico_fr, most_similar, list_of_word_picked, longueur_mot, propositions_str, headings, data, sorted_data, word_proposed
 
     
     if request.method == "POST":
@@ -100,7 +101,7 @@ def similarity_score():
         word1 = word_picked
         word2 = request.form["text"]
            
-        if word2 not in vocab_fr :
+        if word2 not in dico_fr :
             return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, erreur='Mot inexistant, essayez-en un autre', headings=headings, data=sorted_data)
         elif word1 == word2 :
             data = list(data)

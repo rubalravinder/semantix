@@ -10,7 +10,7 @@ import tarfile
 
 def load_vocab_fr(model_word):
     '''This function loads our french dictionnary and transforms it as a list'''
-    words = pd.read_csv('./Data/liste_francais.txt', encoding = 'latin1', header = None)
+    words = pd.read_csv('./Data/TOP_550_mots_fr.txt', sep ='/n', header = None, engine = 'python')
     vocab = words.iloc[:,0].values.tolist()
     for word in vocab : 
         if model_word.has_index_for(word) == False :
@@ -53,6 +53,6 @@ class Proposition(object):
 
 
        
-def untar_model(path_from, path_to):
-    tf = tarfile.open(path_from)
-    tf.extractall(path_to) 
+# def untar_model(path_from, path_to):
+#     tf = tarfile.open(path_from)
+#     tf.extractall(path_to) 
