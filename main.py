@@ -80,8 +80,11 @@ def win():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    global id 
-    return render_template('./mail.php', id = id )
+    return render_template('./contact.html')
+
+@app.route("/home", methods=["GET", "POST"])
+def retour_home():
+    return render_template('./home.html')
 
 
 @app.route("/play", methods=["GET", "POST"])
@@ -130,4 +133,4 @@ def similarity_score():
 
 if __name__ == "__main__":
     # app.run()
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',  debug = True)

@@ -1,0 +1,25 @@
+<!-- Sample HTML Form -->
+{% block content %}
+{% block styles %}
+<link rel="stylesheet" href="{{url_for('.static', filename='contact.css')}}">
+{% endblock %}
+
+<form action="https://getform.io/f/f11f426a-3839-4131-b11e-d98d7591b387"
+method="POST"
+enctype="multipart/form-data"
+name="EmailForm">
+<input name="name" type="text" class="feedback-input" placeholder="Prénom..." />   
+<input name="email" type="text" class="feedback-input" placeholder="Email..." />
+<textarea name="text" class="feedback-input" placeholder="Votre message..."></textarea>
+<input type="submit" value="ENVOYER"/>
+</form>  
+
+
+
+<div id="outer">
+    <a href= './home'>
+    <div class="button_slide slide_right">RETOUR A L'ACCUEIL</div>
+    <br /> <br /><br />
+</div>
+</a>
+{% endblock %}
