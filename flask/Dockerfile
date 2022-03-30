@@ -12,4 +12,6 @@ RUN apt-get -y update
 RUN pip3 install -r requirements.txt
 
 #Run the command
-RUN python3 main.py
+ENV FLASK_APP main.py
+
+CMD ["flask","run","--host=0.0.0.0"]

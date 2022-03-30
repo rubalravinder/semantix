@@ -2,18 +2,19 @@ version: '3.9'
 
 services:
   appli:
-    build:
-      dockerfile: ./flask/Dockerfile
-      context: ./
+    # build:
+    #   dockerfile: ./flask/Dockerfile
+    #   context: ./
+    image: rubalravinder/flask_app:0
     ports:
       - 80:80
     depends_on:
       - model
 
   model:
-    # image: rubalravinder/word2vec_model
-    build:
-      dockerfile: ./model/Dockerfile
-      context: ./
+    image: rubalravinder/word2vec_model:1
+    # build:
+    #   dockerfile: ./model/Dockerfile
+    #   context: ./
     ports:
       - 5000:5000
