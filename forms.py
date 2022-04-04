@@ -18,20 +18,18 @@ def load_vocab_fr(model_word):
     return vocab
 
 
-def pick_random_word(mots_fr, model_nlp):
+def pick_random_word(mots_fr):
     '''This function picks randomly a word from our french dictionnary''' 
     
     word_to_guess = random.choice(mots_fr)
-    word_to_guess = model_nlp(word_to_guess)
-    word_picked = word_to_guess[0].lemma_ 
-    return word_picked
+    return word_to_guess
 
-def check_compatibility(word_picked_bla, model, mots_fr, model_nlp): 
-    while model.has_index_for(word_picked_bla) == False :
-        word_picked_bla = pick_random_word(mots_fr, model_nlp)
-    else : 
-        word_picked = word_picked_bla
-        return word_picked
+# def check_compatibility(word_picked_bla, model, mots_fr, model_nlp): 
+#     while model.has_index_for(word_picked_bla) == False :
+#         word_picked_bla = pick_random_word(mots_fr, model_nlp)
+#     else : 
+#         word_picked = word_picked_bla
+#         return word_picked
 
 
 class SimilarityForm(FlaskForm):

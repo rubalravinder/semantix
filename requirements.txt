@@ -4,5 +4,4 @@ Flask_WTF==1.0.0
 gensim==4.1.2
 numpy==1.22.3
 pandas==1.4.1
-spacy==3.2.3
 WTForms==3.0.1

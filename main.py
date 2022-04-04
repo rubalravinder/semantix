@@ -5,7 +5,7 @@ import warnings
 from forms import *
 import os
 import operator
-import spacy
+#import spacy
 
 
 warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim') # not sure it's useful there
@@ -41,7 +41,7 @@ longueur_mot = 0
 most_similar = 0.65
 id = 1
 propositions_str = []
-nlp = spacy.load("./Data/fr_core_news_md-3.2.0/fr_core_news_md/fr_core_news_md-3.2.0")
+#nlp = spacy.load("./Data/fr_core_news_md-3.2.0/fr_core_news_md/fr_core_news_md-3.2.0")
 
 headings = ('id', 'mot', 'score')
 data = ()
@@ -63,10 +63,10 @@ def bouton():
     id = 1
 
     # choix du mot à deviner
-    word_picked = pick_random_word(vocab_fr, nlp)
+    word_picked = pick_random_word(vocab_fr)
     print(word_picked)
-    word_picked = check_compatibility(word_picked, model, vocab_fr, nlp)
-    print(word_picked)
+    #word_picked = check_compatibility(word_picked, model, vocab_fr, nlp)
+    #print(word_picked)
     list_of_word_picked.append(word_picked)
     longueur_mot = len(word_picked)
     most_similar = round(model.most_similar(word_picked)[0][1], 3)
