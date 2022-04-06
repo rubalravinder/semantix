@@ -19,18 +19,11 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 
 # Let's load the Word Embeddings model trained with the .bin composed of tons of french words.
-# Can't really explain how it's working for the moment.
 
-#Let's Unzip the model .bin to the same directory
-#untar_model('./Data/model_vector.tar.gz', './Data/')
-#print('Model unzipped !')
-model = KeyedVectors.load_word2vec_format("./Data/model_leger.bin", binary=True, unicode_errors="ignore")
+model = KeyedVectors.load_word2vec_format("./Data/model_pV1.bin", binary=True, unicode_errors="ignore")
 vocab_fr = load_vocab_fr(model) # We load the french dictionnary
-dico_fr = pd.read_csv('./Data/liste_francais.txt', encoding = 'latin1', header = None)
+dico_fr = pd.read_csv('./Data/list_mots.txt', encoding = 'utf-8',sep ='\t',  header = None)
 dico_fr = dico_fr.iloc[:,0].values.tolist()
-#Let's Unzip the spacy model to the same directory
-# untar_model('./Data/fr_core_news_md-3.2.0.tar.gz', './Data/')
-# print('model_spacy_unziped !')
 
 # Generate global variables
 
@@ -41,15 +34,16 @@ longueur_mot = 0
 most_similar = 0.65
 id = 1
 propositions_str = []
-#nlp = spacy.load("./Data/fr_core_news_md-3.2.0/fr_core_news_md/fr_core_news_md-3.2.0")
+
 
 headings = ('id', 'mot', 'score')
 data = ()
 sorted_data = ()
 word_proposed = ()
 
-
-# HTML pages
+###################################################################################################################################################################
+################################################    APP      ######################################################################################################
+###################################################################################################################################################################
 
 @app.route("/", methods=["GET", "POST"])
 def bouton():
