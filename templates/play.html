@@ -90,14 +90,14 @@
           <div style = "height:200px; width:60%; float:left;">
               <!-- Champ de texte -->
               <div class="contact">       
-                  <form action="{{ url_for('similarity_score') }}" method=post>
+                  <form action="{{ url_for('similarity_score') }}" method=post id="todo-form">
                       <div>
                         <p>
-                            {{ form.text.label }} <br>
-                            {{ form.text(placeholder='Votre mot') }}
+                          {{ form.text.label }} <br>
+                          {{ form.text(placeholder='Votre mot') }}
                         </p> {{ erreur }}
                         <p>
-                            {{ form.submit }}
+                          {{ form.submit }}
                         </p>
                         <br> <hr color="#0d5674" style= "height:2px"></hr><br>
                         <!-- Tableau de la dernière proposition -->

@@ -27,19 +27,22 @@ dico_fr = dico_fr.iloc[:,0].values.tolist()
 
 # Generate global variables
 
-word_picked = 'table' # We generate the random french word
+def index():
+    """returns the actual id"""
+    for id in range(1000):
+        yield id
+        id += 1
+
+
+# choix du mot à deviner
+word_picked = pick_random_word(vocab_fr)
 print(word_picked)
-list_of_word_picked = [word_picked]
-longueur_mot = 0
-most_similar = 0.65
-id = 1
-propositions_str = []
+list_of_word_picked = [""]
+list_of_word_picked.append(word_picked)
+longueur_mot = len(word_picked)
+most_similar = round(model.most_similar(word_picked)[0][1], 3)
+print(most_similar)
 
-
-headings = ('id', 'mot', 'score')
-data = ()
-sorted_data = ()
-word_proposed = ()
 
 ###################################################################################################################################################################
 ################################################    APP      ######################################################################################################
@@ -47,31 +50,20 @@ word_proposed = ()
 
 @app.route("/", methods=["GET", "POST"])
 def bouton():
-    global word_picked, most_similar, list_of_word_picked, longueur_mot, nlp, id, propositions_str, data
+    # global word_picked, most_similar, list_of_word_picked, longueur_mot, id, propositions_str, data
 
-    # au cas où abandon
-    data = list(data)
-    data.clear()
-    data = tuple(data)
-    propositions_str.clear()
-    id = 1
-
-    # choix du mot à deviner
-    word_picked = pick_random_word(vocab_fr)
-    print(word_picked)
-    #word_picked = check_compatibility(word_picked, model, vocab_fr, nlp)
-    #print(word_picked)
-    list_of_word_picked.append(word_picked)
-    longueur_mot = len(word_picked)
-    most_similar = round(model.most_similar(word_picked)[0][1], 3)
-    print(most_similar)
+    # # au cas où abandon
+    # data = list(data)
+    # data.clear()
+    # data = tuple(data)
+    # propositions_str.clear()
+    # id = 1
     return render_template('./home.html')
 
 
 @app.route("/win", methods=["GET", "POST"])
 def win():
-    global id 
-    return render_template('./win.html', id = id )
+    return render_template('./win.html')
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -87,7 +79,25 @@ def similarity_score():
     form = SimilarityForm()
 
     # Initialize variables
-    global id, word_picked, dico_fr, most_similar, list_of_word_picked, longueur_mot, propositions_str, headings, data, sorted_data, word_proposed
+
+    propositions_str = []
+
+    headings = ('id', 'mot', 'score')
+    data = ()
+    sorted_data = ()
+    word_proposed = ()
+
+
+    # def index():
+    #     """returns the actual id"""
+    #     for id in range(1000):
+    #         yield id
+    #         id += 1
+
+    # increment_id = index()
+    # id = next(increment_id)
+
+    global word_picked, dico_fr, most_similar, list_of_word_picked, longueur_mot
 
     
     if request.method == "POST":
@@ -102,7 +112,6 @@ def similarity_score():
             data.clear()
             data = tuple(data)
             propositions_str.clear()
-            id = 1
             return render_template('./win.html')  
         else : 
             result = round(model.similarity(word1, word2), 3)
@@ -112,10 +121,8 @@ def similarity_score():
                 data = list(data)
                 data.append(word_proposed)
                 propositions_str.append(word2)
-                # propositions_sorted =  sorted(propositions, key=operator.attrgetter('score'), reverse=True)
                 sorted_data = tuple(sorted(data, key=operator.itemgetter(2), reverse=True))
                 data = tuple(data)
-                id+=1
                 
 
         return render_template("/play.html", form=form, most = most_similar, previous_word = list_of_word_picked[-2], longueur_mot = longueur_mot, headings=headings, data=sorted_data, word_proposed=word_proposed, id = id)
