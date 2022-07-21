@@ -2,7 +2,7 @@
 FROM python:3.9.12-slim-buster
 
 #Set the working directory
-WORKDIR /
+WORKDIR /app
 
 #copy all the files
 COPY . .
@@ -14,7 +14,5 @@ RUN pip3 install -r requirements.txt
 #Expose the required port
 EXPOSE 5000
 
-
 #Run the command
-ENTRYPOINT ["python"]
-CMD ["main.py"]
+CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0"]
